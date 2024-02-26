@@ -22,8 +22,8 @@ elif [ "$1" = "cleanup" ]; then
     rm -rf ./frontend/.next
 elif [ "$1" = "count" ]; then
     echo "[start] Counting lines of code..."
-    git ls-files -- "*.py" "*.js" "*.css" "*.txt" "*.md" | xargs wc -l
+    git ls-files -- "*.py" "*.js" "*.css" "*.txt" "*.md" "*.sh" | xargs wc -l
 else
-    echo "[start] Invalid argument: $1. Please use "backend", "frontend", or "cleanup""
+    echo "[start] Invalid argument: $1"
     exit 1
 fi
