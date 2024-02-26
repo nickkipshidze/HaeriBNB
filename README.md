@@ -7,24 +7,24 @@ Georgian version of popular web service - AirBNB
 ## Running the code
 
 1. Clone the repository:
-```shell
-$ git clone https://github.com/NickKipshidze/HaeriBNB
-````
+    ```shell
+    $ git clone https://github.com/NickKipshidze/HaeriBNB
+    ````
 
 0. Change into the repository directory (obviously):
-```shell
-$ cd ./HaeriBNB
-```
+    ```shell
+    $ cd ./HaeriBNB
+    ```
 
 0. Start the backend:
-```shell
-$ ./start.sh backend
-```
+    ```shell
+    $ ./start.sh backend
+    ```
 
 0. Start the frontend:
-```shell
-$ ./start.sh frontend
-```
+    ```shell
+    $ ./start.sh frontend
+    ```
 
 ## Utility program (start.sh)
 
