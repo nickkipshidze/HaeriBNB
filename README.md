@@ -34,6 +34,14 @@ Very useful for cleaning cache and managing dependencies.
 
 It just makes life easier. Try it.
 
+### install
+
+`install` command installs all python and npm packages/libraries.
+
+```shell
+$ ./start.sh install
+```
+
 ### cleanup
 
 `cleanup` command basically removes all cache directories.

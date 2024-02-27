@@ -7,16 +7,29 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-if [ "$1" = "backend" ]; then
+check_python() {
     echo "[start] Checking python..."
-
     if command -v python3 &>/dev/null; then
         echo "[start] Python3 is installed - version: $(python3 --version)"
     else
         echo "[start] Python3 is not installed"
         exit 1
     fi
+}
 
+check_npm() {
+    echo "[start] Checking npm..."
+    if command -v npm &>/dev/null; then
+        echo "[start] npm is installed - version: $(npm --version)"
+    else
+        echo "[start] npm is not installed"
+        exit 1
+    fi
+}
+
+if [ "$1" = "backend" ]; then
+    check_python
+    
     echo "[start] Starting backend server"
 
     cd ./backend
@@ -24,19 +37,24 @@ if [ "$1" = "backend" ]; then
     python3 manage.py runserver localhost:8000
 
 elif [ "$1" = "frontend" ]; then
-    echo "[start] Checking npm..."
-
-    if command -v npm &>/dev/null; then
-        echo "[start] npm is installed - version: $(npm --version)"
-    else
-        echo "[start] npm is not installed"
-        exit 1
-    fi
+    check_npm
 
     echo "[start] Starting frontend server"
 
     cd ./frontend
     npm run dev
+
+elif [ "$1" = "install" ]; then
+    check_python
+    check_npm
+
+    echo "[start] Installing python dependencies..."
+    cd ./backend
+    python3 -m pip install -r requirements.txt
+
+    echo "[start] Installing npm dependencies..."
+    cd ../frontend
+    npm install
 
 elif [ "$1" = "cleanup" ]; then
     echo "[start] Cleaning up..."
