@@ -29,12 +29,24 @@ check_npm() {
 
 if [ "$1" = "backend" ]; then
     check_python
-    
-    echo "[start] Starting backend server"
 
     cd ./backend
-    python3 manage.py migrate
-    python3 manage.py runserver localhost:8000
+
+    if [ "$2" = "makemigrations" ]; then
+        echo "[start] Making migrations..."
+        python3 manage.py makemigrations
+    
+    elif [ "$2" = "migrate" ]; then
+        echo "[start] Migrating database..."
+        python3 manage.py migrate
+    
+    elif [ "$2" = "mksudo" ]; then
+        python3 manage.py createsuperuser
+
+    else
+        echo "[start] Starting backend server"
+        python3 manage.py runserver localhost:8000
+    fi
 
 elif [ "$1" = "frontend" ]; then
     check_npm
